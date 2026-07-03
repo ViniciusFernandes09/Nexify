@@ -1,0 +1,10 @@
+
+.dsc-header-client {
+  background-color: var(--dsc-color-bg-secondary);
+  color: var(--dsc-color-font-primary);
+}
+
+.nxf-logo {
+    height: 53px;
+    width: auto;
+}

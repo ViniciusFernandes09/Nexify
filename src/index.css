@@ -1,21 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 
 :root {
-  --dsc-color-bg-primary: #e8e8e8;
-  --dsc-color-bg-secondary: #ffe500;
-  --dsc-color-bg-tertiary: #636363;
+  --dsc-color-bg-primary: #121212;
+  --dsc-color-bg-secondary: #1b1b1a;
+  --dsc-color-bg-tertiary: #333333;
   --dsc-color-bg-quaternary: #0caf1d;
 
-  --dsc-color-card-bg: #fff;
-  --dsc-color-card-border: #d9d9d9;
+  --dsc-color-card-bg: #212222;
+  --dsc-color-card-border: #2e2e2e;
 
-  --dsc-color-btn-primary: #3483fa;
-  --dsc-color-btn-inverse: #fff;
+  --dsc-color-btn-primary: #0a4ad8;
+  --dsc-color-btn-text: #ffffff;
 
-  --dsc-color-font-primary: #636363;
+  --dsc-color-font-primary: #c7c7c7;
   --dsc-color-font-secondary: #0caf1d;
-  --dsc-color-font-tertiary: #fff;
-  --dsc-color-font-placeholder: #d9d9d9;
+  --dsc-color-font-tertiary: #b7b8b7;
+  --dsc-color-font-placeholder: #b7b8b7;
 
   --dsc-color-error: #f33;
 }
@@ -84,11 +84,6 @@ header {
   display: flex;
   align-items: center;
   padding: 0 20px;
-}
-
-.dsc-header-client {
-  background-color: var(--dsc-color-bg-secondary);
-  color: var(--dsc-color-font-primary);
 }
 
 .dsc-header-admin {
@@ -207,7 +202,7 @@ nav a {
 .dsc-btn-blue {
   border: none;
   background-color: var(--dsc-color-btn-primary);
-  color: var(--dsc-color-btn-inverse);
+  color: var(--dsc-color-btn-text);
 }
 
 .dsc-btn-white {
