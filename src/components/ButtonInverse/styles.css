@@ -1,0 +1,5 @@
+.nxf-btn-black {
+  border: 1px solid var(--nxf-color-btn-primary);
+  background-color: var(--nxf-color-btn-inverse);
+  color: var(--nxf-color-btn-primary);
+}

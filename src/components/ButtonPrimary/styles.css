@@ -1,0 +1,6 @@
+
+.nxf-btn-blue {
+  border: none;
+  background-color: var(--nxf-color-btn-primary);
+  color: var(--nxf-color-btn-text);
+}
