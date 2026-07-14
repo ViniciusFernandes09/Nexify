@@ -10,7 +10,7 @@ export default function ProductDetailsCard() {
         <img src={computerImg} alt="Computador" />
       </div>
       <div className="nxf-product-details-bottom">
-        <h3>R$ 5000,00</h3>
+        <h3>R$ 5.000,00</h3>
         <h4>Computador Gamer XT</h4>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

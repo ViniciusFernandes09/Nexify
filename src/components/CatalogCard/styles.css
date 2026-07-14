@@ -1,0 +1,25 @@
+.nxf-catalog-card-top {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.nxf-catalog-card-top img {
+  width: 150px;
+  height: 150px;
+}
+
+.nxf-catalog-card-bottom {
+  padding: 10px 20px;
+  min-height: 110px;
+}
+
+.nxf-catalog-card-bottom h3 {
+  color: var(--nxf-color-font-secondary);
+  font-size: 20px;
+}
+
+.nxf-catalog-card-bottom h4 {
+  color: var(--nxf-color-font-primary);
+  font-size: 12px;
+}
