@@ -1,10 +1,13 @@
 import './styles.css'
 
-export default function ButtonInverse() {
+type Props = {
+    text: string;
+}
 
+export default function ButtonInverse({text} : Props) {
     return (
         <div className="nxf-btn nxf-btn-black">
-              Início
+              {text}
         </div>
     );
 }

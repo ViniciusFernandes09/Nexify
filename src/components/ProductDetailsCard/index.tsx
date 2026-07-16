@@ -7,14 +7,16 @@ type Props = {
 }
 
 export default function ProductDetailsCard({ product }: Props) {
-
   return (
     <div className="nxf-card nxf-mb20">
       <div className="nxf-product-details-top nxf-line-bottom">
         <img src={product.imgUrl} alt={product.name} />
       </div>
       <div className="nxf-product-details-bottom">
-        <h3>R$ {product.price.toFixed(2)} </h3>
+        <h3>R$ {product.price.toLocaleString ('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  })}</h3>
         <h4>{product.name}</h4>
         <p>{product.description}</p>
         <div className="nxf-category-container">

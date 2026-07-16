@@ -1,11 +1,14 @@
 
 import './styles.css';
 
-export default function ButtonPrimary() {
-    
+type Props = {
+    text: string;
+}
+
+export default function ButtonPrimary({text} : Props) {
     return (
         <div className="nxf-btn nxf-btn-blue">
-              Comprar
+            {text}
         </div>
     );
 }

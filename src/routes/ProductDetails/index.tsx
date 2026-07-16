@@ -7,10 +7,10 @@ import type { ProductDTO } from "../../models/product";
 
 const product: ProductDTO = {
   id: 2,
-  name: "Smart TV",
-  description: "Esta TV é foda!",
-  imgUrl: "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/refs/heads/master/backend/img/2-big.jpg",
-  price: 3690.99,
+  name: "Apple Macbook Pro 2020",
+  description: "O MacBook Neo foi projetado para acompanhar o seu ritmo. Com um desempenho excepcional em tarefas e aplicativos, ele combina elegância e durabilidade em uma estrutura resistente de alumínio, disponível em quatro cores exclusivas.",
+  imgUrl: "https://raw.githubusercontent.com/ViniciusFernandes09/Nexify/refs/heads/main/src/assets/computer.png.png",
+  price: 3990.00,
   categories: [
     {
       id: 2,
@@ -22,7 +22,7 @@ const product: ProductDTO = {
     },
     {
       id: 4,
-      name: "Importados"
+      name: "Tecnologia"
     }
   ]
 }
@@ -36,8 +36,8 @@ export default function ProductDetails() {
         <section id="product-details-section" className="nxf-container">
           <ProductDetailsCard product={product} />
           <div className="nxf-btn-page-container">
-            <ButtonPrimary />
-            <ButtonInverse />
+            <ButtonPrimary text="Comprar" />
+            <ButtonInverse text= "Início" />
           </div>
         </section>
       </main>
