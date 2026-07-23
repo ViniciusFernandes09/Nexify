@@ -1,10 +1,8 @@
 import "./styles.css";
-
-import HeaderClient from "../../components/HeaderClient";
-import SearchBar from "../../components/SearchBar";
-import CatalogCard from "../../components/CatalogCard";
-import ButtonNextPage from "../../components/ButtonNextPage";
-import type { ProductDTO } from "../../models/product";
+import SearchBar from "../../../components/SearchBar";
+import CatalogCard from "../../../components/CatalogCard";
+import ButtonNextPage from "../../../components/ButtonNextPage";
+import type { ProductDTO } from "../../../models/product";
 
 const product: ProductDTO = {
   id: 2,
@@ -30,8 +28,6 @@ const product: ProductDTO = {
 
 export default function Catalog() {
   return (
-    <>
-      <HeaderClient />
       <main>
         <section id="catalog-section" className="nxf-container">
           <SearchBar />
@@ -54,6 +50,5 @@ export default function Catalog() {
           <ButtonNextPage />
         </section>
       </main>
-    </>
   );
 }
