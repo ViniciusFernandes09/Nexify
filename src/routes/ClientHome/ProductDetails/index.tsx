@@ -23,7 +23,6 @@ const product = productService.findById(Number(params.productId));
             <Link to="/">
               <ButtonInverse text= "Início" />
             </Link>
-
           </div>
         </section>
       </main>
