@@ -10,17 +10,23 @@ export default function Catalog() {
 
   const [products, setProducts] = useState<ProductDTO[]>([]);
 
+  const [productName, setProductName] = useState("");
+
   useEffect(() => {
-    productService.findAll()
+    productService.findPageRequest(0, productName)
       .then(response => {
         setProducts(response.data.content);
       });
-  }, []);
+  }, [productName]);
+
+  function handleSearch(searchText: string) {
+    setProductName(searchText);
+  }
 
   return (
       <main>
         <section id="catalog-section" className="nxf-container">
-          <SearchBar />
+          <SearchBar onSearch={handleSearch}/>
 
           <div className="nxf-catalog-cards nxf-mb20 nxf-mt20">
             {
