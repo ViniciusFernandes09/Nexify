@@ -1,7 +1,7 @@
 import "./styles.css";
 import logoIcon from "../../assets/logo.png.png";
-import cartIcon from "../../assets/cart.svg.svg";
 import { Link } from "react-router-dom";
+import CartIcon from "../CartIcon";
 
 export default function HeaderClient() {
     
@@ -15,11 +15,11 @@ export default function HeaderClient() {
         </Link>
         <div className="nxf-navbar-right">
           <div className="nxf-menu-items-container">
-            <div className="nxf-menu-item">
-              <Link to="/cart">
-                <img src={cartIcon} alt="Carrinho de compras" />
-              </Link>
-            </div>
+            <Link to="/cart">
+              <div className="nxf-menu-item">
+                <CartIcon />
+              </div>
+            </Link>
           </div>
           <Link to="/login"> 
             Entrar
