@@ -8,10 +8,8 @@ export default function HeaderClient() {
   return (
     <header className="nxf-header-client">
       <nav className="nxf-container">
-        <Link to="/">
-          <a className="nxf-logo">
+        <Link to="/" className="nxf-logo">
             <img src={logoIcon} alt="Logo Nexify" />
-          </a>
         </Link>
         <div className="nxf-navbar-right">
           <div className="nxf-menu-items-container">

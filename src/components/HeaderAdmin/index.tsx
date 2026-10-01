@@ -2,14 +2,15 @@ import "./styles.css";
 import logoIcon from "../../assets/logo.png.png";
 import homeIcon from '../../assets/inicio.svg'
 import productsIcon from '../../assets/produtos.svg'
+import { Link } from "react-router-dom";
 
 export default function HeaderAdmin() {
   return (
     <header className="nxf-header-admin">
       <nav className="nxf-container">
-        <a className="nxf-logo">
-          <img src={logoIcon} alt="Logo Nexify" />
-        </a>
+        <Link to="/" className="nxf-logo">
+            <img src={logoIcon} alt="Logo Nexify" />
+        </Link>
         <div className="nxf-navbar-right">
           <div className="nxf-menu-items-container">
             <div className="nxf-menu-item">
