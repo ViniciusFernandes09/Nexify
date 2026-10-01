@@ -1,0 +1,9 @@
+.nxf-header-admin {
+  background-color: var(--nxf-color-bg-quaternary);
+  color: var(--nxf-color-font-tertiary);
+}
+
+.nxf-logo {
+    height: 53px;
+    width: auto;
+}

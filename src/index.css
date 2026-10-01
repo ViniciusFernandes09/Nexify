@@ -4,7 +4,7 @@
   --nxf-color-bg-primary: #121212;
   --nxf-color-bg-secondary: #1b1b1a;
   --nxf-color-bg-tertiary: #333333;
-  --nxf-color-bg-quaternary: #0caf1d;
+  --nxf-color-bg-quaternary: #409c02;
   --nxf-color-bg-notification: #f00;
 
   --nxf-color-card-bg: #212222;
@@ -86,11 +86,6 @@ header {
   display: flex;
   align-items: center;
   padding: 0 20px;
-}
-
-.nxf-header-admin {
-  background-color: var(--nxf-color-bg-quaternary);
-  color: var(--nxf-color-font-tertiary);
 }
 
 nav {
