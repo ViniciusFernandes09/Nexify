@@ -120,6 +120,8 @@ nav a {
   margin-right: 20px;
   display: flex;
   align-items: center;
+  font-weight: 700;
+  color: var(--nxf-color-font-searchbar);
 }
 
 .nxf-menu-item p {
@@ -130,16 +132,27 @@ nav a {
 
 .nxf-menu-item-active {
   font-weight: 700;
+  color: var(--nxf-color-font-searchbar);
 }
 
 .nxf-logged-user {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  color: var(--nxf-color-font-searchbar);
+}
+
+.nxf-logged-user span {
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--nxf-color-font-searchbar);
 }
 
 .nxf-logged-user p {
+  display: block !important;
   font-size: 12px;
+  color: var(--nxf-color-font-searchbar);
 }
 
 .nxf-logged-user a {

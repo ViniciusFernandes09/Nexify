@@ -3,8 +3,10 @@ import logoIcon from "../../assets/logo.png.png";
 import homeIcon from '../../assets/inicio.svg'
 import productsIcon from '../../assets/produtos.svg'
 import { Link } from "react-router-dom";
+import LoggedUser from "../LoggedUser";
 
 export default function HeaderAdmin() {
+  
   return (
     <header className="nxf-header-admin">
       <nav className="nxf-container">
@@ -22,10 +24,7 @@ export default function HeaderAdmin() {
               <p className="nxf-menu-item-active">Produtos</p>
             </div>
           </div>
-          <div className="nxf-logged-user">
-            <p>Maria Silva</p>
-            <a href="#">Sair</a>
-          </div>
+          <LoggedUser />
         </div>
       </nav>
     </header>
