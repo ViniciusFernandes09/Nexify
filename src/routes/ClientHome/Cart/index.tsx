@@ -1,11 +1,14 @@
 import './styles.css'
 import * as cartService from '../../../services/cart-service'
+import * as orderService from '../../../services/order-service'
 import { OrderDTO } from '../../../models/order';
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ContextCartCount } from '../../../utils/context-cart';
 
 export default function Cart() {
+
+    const navigate  = useNavigate();
 
     const [cart, setCart] = useState<OrderDTO>(cartService.getCart());
 
@@ -31,6 +34,16 @@ export default function Cart() {
         setCart(newCart);
         setContextCartCount(newCart.items.length);
     }
+
+    function handlePlaceOrderClick() {
+        orderService.placeorderRequest(cart)
+        .then(response => {
+            cartService.clearCart();
+            setContextCartCount(0);
+            navigate(`/confirmation/${response.data.id}`)
+        });
+    }
+
 
     return (
         <main>
@@ -71,7 +84,9 @@ export default function Cart() {
                 }
                 
                 <div className="nxf-btn-page-container">
-                    <div className="nxf-btn nxf-btn-blue">Finalizar pedido</div>
+                    <div onClick={handlePlaceOrderClick} className="nxf-btn nxf-btn-blue">
+                        Finalizar pedido
+                    </div>
                     <Link to="/catalog">
                         <div className="nxf-btn nxf-btn-black">Continuar comprando</div>
                     </Link>
