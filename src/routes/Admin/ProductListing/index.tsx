@@ -7,6 +7,7 @@ import type { ProductDTO } from "../../../models/product";
 import SearchBar from "../../../components/SearchBar";
 import ButtonNextPage from "../../../components/ButtonNextPage";
 import DialogInfo from "../../../components/DialogInfo";
+import DialogConfirmation from "../../../components/DialogConfirmation";
 
 type QueryParams = {
   page: number;
@@ -18,6 +19,11 @@ export default function ProductListing() {
     const [dialogInfoData, setDialogInfoData] = useState({
         visible: false,
         message: "Operação com sucesso!"
+    });
+
+    const [dialogConfirmationData, setDialogConfirmationata] = useState({
+        visible: false,
+        message: "Tem certeza?"
     });
 
     const [isLastPage, setIsLastPage] = useState(false);
@@ -44,15 +50,20 @@ export default function ProductListing() {
     }
 
     function handleNextPageClick () {
-        setQueryParam({...queryParams, page: queryParams.page + 1})
+        setQueryParam({...queryParams, page: queryParams.page + 1});
     }
 
     function handleDialogInfoClose() {
-        setDialogInfoData({...dialogInfoData, visible: false})
+        setDialogInfoData({...dialogConfirmationData, visible: false});
     }
 
     function handleDeleteClick() {
-        setDialogInfoData({...dialogInfoData, visible: true})
+        setDialogConfirmationata({...dialogConfirmationData, visible: true});
+    }
+
+    function handleDialogConfirmationAnsware(answer: boolean) {
+        console.log("Resposta", answer);
+        setDialogConfirmationata({...dialogConfirmationData, visible: false});
     }
 
     return (
@@ -104,6 +115,11 @@ export default function ProductListing() {
             {
                 dialogInfoData.visible &&
                 <DialogInfo message={dialogInfoData.message} onDialogClose={handleDialogInfoClose} />
+            }
+
+            {
+                dialogConfirmationData.visible &&
+                <DialogConfirmation message={dialogConfirmationData.message} onDialogAnswer={handleDialogConfirmationAnsware} />
             }
         </main>
     );
