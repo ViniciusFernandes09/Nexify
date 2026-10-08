@@ -10,8 +10,8 @@ import DialogInfo from "../../../components/DialogInfo";
 import DialogConfirmation from "../../../components/DialogConfirmation";
 
 type QueryParams = {
-  page: number;
-  name: string;
+    page: number;
+    name: string;
 }
 
 export default function ProductListing() {
@@ -21,7 +21,8 @@ export default function ProductListing() {
         message: "Operação com sucesso!"
     });
 
-    const [dialogConfirmationData, setDialogConfirmationata] = useState({
+    const [dialogConfirmationData, setDialogConfirmationData] = useState({
+        id: 0,
         visible: false,
         message: "Tem certeza?"
     });
@@ -32,7 +33,7 @@ export default function ProductListing() {
 
     const [queryParams, setQueryParam] = useState<QueryParams>({
         page: 0,
-        name: "",
+        name: ""
     });
 
     useEffect(() => {
@@ -57,13 +58,26 @@ export default function ProductListing() {
         setDialogInfoData({...dialogConfirmationData, visible: false});
     }
 
-    function handleDeleteClick() {
-        setDialogConfirmationata({...dialogConfirmationData, visible: true});
+    function handleDeleteClick(productId: number) {
+        setDialogConfirmationData({...dialogConfirmationData, id: productId, visible: true});
     }
 
-    function handleDialogConfirmationAnsware(answer: boolean) {
-        console.log("Resposta", answer);
-        setDialogConfirmationata({...dialogConfirmationData, visible: false});
+    function handleDialogConfirmationAnsware(answer: boolean, productId: number) {
+        if (answer) {
+            productService.deleteById(productId)
+                .then(() => {
+                    setProducts([]);
+                    setQueryParam({ ...queryParams, page: 0});
+                })
+                .catch(error => {
+                    setDialogInfoData({
+                        visible: true,
+                        message: error.response.data.error
+                    })
+                });
+        }
+
+        setDialogConfirmationData({...dialogConfirmationData, visible: false});
     }
 
     return (
@@ -97,7 +111,7 @@ export default function ProductListing() {
                             <td className="nxf-tb768">R$ {product.price.toFixed(2)}</td>
                             <td className="nxf-txt-left">{product.name}</td>
                             <td><img className="nxf-product-listing-btn" src={editIcon} alt="Editar" /></td>
-                            <td><img onClick={handleDeleteClick} className="nxf-product-listing-btn" src={deleteIcon} alt="Deletar" /></td>
+                            <td><img onClick={() => handleDeleteClick(product.id)} className="nxf-product-listing-btn" src={deleteIcon} alt="Deletar" /></td>
                         </tr>
                     ))
                 }
@@ -119,7 +133,7 @@ export default function ProductListing() {
 
             {
                 dialogConfirmationData.visible &&
-                <DialogConfirmation message={dialogConfirmationData.message} onDialogAnswer={handleDialogConfirmationAnsware} />
+                <DialogConfirmation id={dialogConfirmationData.id} message={dialogConfirmationData.message} onDialogAnswer={handleDialogConfirmationAnsware} />
             }
         </main>
     );

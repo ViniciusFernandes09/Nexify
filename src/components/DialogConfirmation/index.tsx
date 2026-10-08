@@ -2,21 +2,22 @@ import ButtonInverse from "../ButtonInverse";
 import ButtonPrimary from "../ButtonPrimary";
 
 type Props = {
+    id: number;
     message: string;
     onDialogAnswer: Function;
 }
 
-export default function DialogConfirmation({message, onDialogAnswer}: Props) {
+export default function DialogConfirmation({id, message, onDialogAnswer}: Props) {
 
     return (
-        <div className="nxf-dialog-bg" onClick={() => onDialogAnswer(false)}>
+        <div className="nxf-dialog-bg" onClick={() => onDialogAnswer(false, id)}>
             <div className="nxf-dialog-box" onClick={(event) => event.stopPropagation()}>
                 <h2>{message}</h2>
                 <div className="nxf-dialog-btn-container">
-                    <div onClick={() => onDialogAnswer(false)}>
+                    <div onClick={() => onDialogAnswer(false, id)}>
                         <ButtonInverse text="Não" />
                     </div>
-                    <div onClick={() => onDialogAnswer(true)}>
+                    <div onClick={() => onDialogAnswer(true, id)}>
                         <ButtonPrimary text="Sim" />
                     </div>
                 </div>

@@ -411,3 +411,7 @@ nav a {
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
+
+.nxf-dialog-btn {
+  width: 100%;
+}
