@@ -253,14 +253,19 @@ nav a {
   color: var(--nxf-color-font-placeholder);
 }
 
-.nxf-input-error {
-  border: 1px solid var(--nxf-color-error);
+.nxf-form-control[data-invalid="true"] {
+border: 1px solid var(--nxf-color-error);
+}
+
+.nxf-form-control[data-invalid="true"] ~ div {
+display: unset;
 }
 
 .nxf-form-error {
   color: var(--nxf-color-error);
   font-size: 12px;
   padding-left: 4px;
+  display: none;
 }
 
 .nxf-select:invalid {
