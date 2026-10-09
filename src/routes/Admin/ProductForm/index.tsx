@@ -1,42 +1,97 @@
-import './styles.css'
+import "./styles.css";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import FormInput from "../../../components/FormImput";
+import * as forms from '../../../utils/forms';
+import * as productService from '../../../services/product-service';
 
 export default function ProductForm() {
 
-    return (
-        <main>
+  const params = useParams();
+
+  const isEditing = params.productId !== 'create';
+
+  const [formData, setFormData] = useState<any>({
+    name: {
+      value: "",
+      id: "name",
+      name: "name",
+      type: "text",
+      placeholder: "Nome",
+    },
+    price: {
+      value: "",
+      id: "price",
+      name: "price",
+      type: "number",
+      placeholder: "Preço",
+    },
+    imgUrl: {
+      value: "",
+      id: "imgUrl",
+      name: "imgUrl",
+      type: "text",
+      placeholder: "Imagem",
+    },
+  });
+
+  useEffect(() => {
+    if (isEditing) {
+        productService.findById(Number (params.productId))
+          .then(response => {
+            const newFormData = forms.updateAll(formData, response.data);
+            setFormData(newFormData);
+          })
+        }
+  }, []);
+
+    function handleInputChange(event: any){
+        setFormData(forms.update(formData, event.target.name, event.target.value));
+    }
+
+  return (
+    <main>
       <section id="product-form-section" className="nxf-container">
         <div className="nxf-product-form-container">
           <form className="nxf-card nxf-form">
             <h2>Dados do produto</h2>
             <div className="nxf-form-controls-container">
               <div>
-                <input className="nxf-form-control" type="text" placeholder="Nome" />
+                <FormInput
+                  {...formData.name}
+                  className="nxf-form-control"
+                  onChange={handleInputChange}
+                />
               </div>
               <div>
-                <input className="nxf-form-control" type="text" placeholder="Preço" />
+                <FormInput
+                  {...formData.price}
+                  className="nxf-form-control"
+                  onChange={handleInputChange}
+                />
               </div>
               <div>
-                <input className="nxf-form-control" type="text" placeholder="Imagem" />
-              </div>
-              <div>
-                <select className="nxf-form-control nxf-select" required>
-                  <option value="" disabled selected>Categorias</option>
-                  <option value="1">Valor 1</option>
-                  <option value="2">Valor 2</option>
-                </select>
-              </div>
-              <div>
-                <textarea className="nxf-form-control nxf-textarea" placeholder="Descrição"></textarea>
+                <FormInput
+                  {...formData.imgUrl}
+                  className="nxf-form-control"
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
 
             <div className="nxf-product-form-buttons">
-              <button type="reset" className="nxf-btn nxf-btn-next-page">Cancelar</button>
-              <button type="submit" className="nxf-btn nxf-btn-blue">Salvar</button>
+              <Link to="/admin/products">
+                <button type="reset" className="nxf-btn nxf-btn-next-page">
+                  Cancelar
+                </button>
+              </Link>
+              <button type="submit" className="nxf-btn nxf-btn-blue">
+                Salvar
+              </button>
             </div>
           </form>
         </div>
       </section>
     </main>
-    )
+  );
 }
