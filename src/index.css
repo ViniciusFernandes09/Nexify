@@ -253,11 +253,11 @@ nav a {
   color: var(--nxf-color-font-placeholder);
 }
 
-.nxf-form-control[data-invalid="true"] {
+.nxf-form-control[data-dirty="true"][data-invalid="true"] {
 border: 1px solid var(--nxf-color-error);
 }
 
-.nxf-form-control[data-invalid="true"] ~ div {
+.nxf-form-control[data-dirty="true"][data-invalid="true"] ~ div {
 display: unset;
 }
 
