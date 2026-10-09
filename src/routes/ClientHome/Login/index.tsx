@@ -48,7 +48,11 @@ export default function Login() {
     }
 
     function handleInputChange(event: any){
-        setFormData(forms.update(formData, event.target.name, event.target.value));
+        setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
+    }
+
+    function handleTurnDirty(name: string) {
+        setFormData(forms.dirtyAndValidate(formData, name));
     }
 
     return (
@@ -62,6 +66,7 @@ export default function Login() {
                         <FormInput
                         {...formData.username}
                             className="nxf-form-control"
+                            onTurnDirty={handleTurnDirty}
                             onChange={handleInputChange}
                         />
                         <div className="nxf-form-error"></div>
@@ -70,6 +75,7 @@ export default function Login() {
                         <FormInput
                         {...formData.password}
                             className="nxf-form-control" 
+                            onTurnDirty={handleTurnDirty}
                             onChange={handleInputChange}
                         />
                     </div>
