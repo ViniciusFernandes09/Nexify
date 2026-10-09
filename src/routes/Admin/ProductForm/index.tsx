@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import FormInput from "../../../components/FormImput";
 import * as forms from '../../../utils/forms';
 import * as productService from '../../../services/product-service';
+import FormTextArea from "../../../components/FormTextArea";
 
 export default function ProductForm() {
 
@@ -41,6 +42,17 @@ export default function ProductForm() {
       type: "text",
       placeholder: "Imagem",
     },
+    description: {
+      value: "",
+      id: "description",
+      name: "description",
+      type: "text",
+      placeholder: "Descrição",
+      validation: function(value: string) {
+        return /^.{10,}$/.test(value);
+      },
+      message: "A descrição deve conter no minimo 10 caracteres"
+    }
   });
 
   useEffect(() => {
@@ -93,6 +105,15 @@ export default function ProductForm() {
                   onTurnDirty={handleTurnDirty}
                   onChange={handleInputChange}
                 />
+              </div>
+              <div>
+                <FormTextArea
+                  {...formData.description}
+                  className="nxf-form-control nxf-textarea"
+                  onTurnDirty={handleTurnDirty}
+                  onChange={handleInputChange}
+                />
+                <div className="nxf-form-error">{formData.description.message}</div>
               </div>
             </div>
 
