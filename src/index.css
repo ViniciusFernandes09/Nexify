@@ -268,16 +268,9 @@ display: unset;
   display: none;
 }
 
-.nxf-select:invalid {
-  color: var(--nxf-color-font-placeholder);
-}
-
-.nxf-select option[disabled] {
-  display: none;
-}
-
-.nxf-select option {
-  color: var(--nxf-color-font-primary);
+.nxf-form-select-container {
+  padding: unset;
+  height: unset;
 }
 
 .nxf-textarea {
