@@ -96,11 +96,23 @@ export default function ProductForm() {
       setFormData(forms.dirtyAndValidate(formData, name));
     }
 
+    function handleSubmit (event: any) {
+      event.preventDefault();
+
+      const formDataValidated = forms.dirtyAndValidateAll(formData);
+      if (forms.hasAnyInvalid(formDataValidated)) {
+        setFormData(formDataValidated);
+        return;
+      }
+
+      //console.log(forms.toValues(formData));
+    }
+
   return (
     <main>
       <section id="product-form-section" className="nxf-container">
         <div className="nxf-product-form-container">
-          <form className="nxf-card nxf-form">
+          <form className="nxf-card nxf-form" onSubmit={handleSubmit}>
             <h2>Dados do produto</h2>
             <div className="nxf-form-controls-container">
               <div>
