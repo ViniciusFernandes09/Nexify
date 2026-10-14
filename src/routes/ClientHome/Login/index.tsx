@@ -10,8 +10,9 @@ export default function Login() {
 
     const { setContextTokenPayload } = useContext(ContextToken);
     
-
     const navigate = useNavigate();
+
+    const [submitResponseFail, SetSubmitResponseFail] = useState(false);
 
     const [formData, setFormData] = useState<any>({
         username: {
@@ -36,14 +37,23 @@ export default function Login() {
 
     function handleSubmit (event: any) {
         event.preventDefault();
+
+        SetSubmitResponseFail(false);
+
+        const formDataValidated = forms.dirtyAndValidateAll(formData);
+        if (forms.hasAnyInvalid(formDataValidated)) {
+            setFormData(formDataValidated);
+            return;
+        }
+
         authService.loginRequest(forms.toValues(formData))
             .then(response => {
                 authService.saveAccessToken(response.data.access_token);
                 setContextTokenPayload(authService.getAccessTokenPayload());
                 navigate("/cart");
             })
-            .catch(error => {
-                console.log("Erro no login", error);
+            .catch(() => {
+                SetSubmitResponseFail(true);
             })
     }
 
@@ -80,6 +90,14 @@ export default function Login() {
                         />
                     </div>
                     </div>
+
+                    {
+                        submitResponseFail &&
+                        <div className="nxf-form-global-error">
+                            Usuário ou senha inválidos
+                        </div>
+                    }
+                    
 
                     <div className="nxf-login-form-buttons nxf-mt20">
                     <button type="submit" className="nxf-btn nxf-btn-blue">Entrar</button>
