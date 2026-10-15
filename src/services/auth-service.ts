@@ -1,28 +1,30 @@
-import QueryString from "qs";
+import axios from "axios";
 import type { AccessTokenPayloadDTO, CredentialsDTO, RoleEnum } from "../models/auth";
-import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
-import type { AxiosRequestConfig } from "axios";
+import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "../utils/system";
 import { requestBackend } from "../utils/requests";
 import * as accessTokenrepository from '../localstorage/access-token-repository'
 import jwtDecode from "jwt-decode";
 
-export function loginRequest(loginData: CredentialsDTO) {
+export async function loginRequest(loginData: CredentialsDTO) {
 
-    const headers = {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: "Basic " + window.btoa(CLIENT_ID + ":" + CLIENT_SECRET)
-    }
-
-    const requestBody =  QueryString.stringify({...loginData, grant_type: "password"});
-
-    const config : AxiosRequestConfig = {
+    const response = await axios({
         method: "POST",
-        url: "/oauth2/token",
-        data: requestBody,
-        headers
-    }
+        url: SUPABASE_URL + "/auth/v1/token",
+        params: { grant_type: "password" },
+        headers: {
+            "Content-Type": "application/json",
+            apikey: SUPABASE_PUBLISHABLE_KEY
+        },
+        data: { email: loginData.username, password: loginData.password }
+    });
 
-    return requestBackend(config);
+    const me = await requestBackend({
+        url: "/users/me",
+        headers: { Authorization: "Bearer " + response.data.access_token }
+    });
+    accessTokenrepository.saveRoles(me.data.roles);
+
+    return response;
 }
 
 export function logout() {
@@ -40,9 +42,15 @@ export function getAccessToken() {
 export function getAccessTokenPayload(): AccessTokenPayloadDTO | undefined {
     try {
         const token = accessTokenrepository.get();
-        return token == null 
-        ? undefined 
-        : (jwtDecode(token) as AccessTokenPayloadDTO);
+        if (token == null) {
+            return undefined;
+        }
+        const jwt = jwtDecode(token) as { exp: number, email?: string };
+        return {
+            exp: jwt.exp,
+            username: jwt.email ?? "",
+            authorities: accessTokenrepository.getRoles()
+        };
     } catch (error) {
         return undefined;
     }
@@ -68,7 +76,6 @@ export function hasAnyRoles(roles: RoleEnum[]): boolean {
                 return true;
             }
         }
-        //return roles.some(role => tokenData.authorities.includes(role));
     }
     return false;
 }
