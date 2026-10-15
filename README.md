@@ -26,6 +26,12 @@ A plataforma foi construída com **React** para a construção de uma interface 
 
 🔗 **Aplicação publicada:** [nexify.com.br](https://nexify-seven-sigma.vercel.app/)
 
+```bash
+Cliente: Email: maria@gmail.com | Senha: 123456
+Administrador: Email: alex@gmail.com | Senha: 123456
+```
+
+
 ---
 
 ## 🎯 Objetivos
